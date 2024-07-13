@@ -57,7 +57,7 @@
             type="text"
             id="inputField"
             class="input-field"
-            v-model="inputValue"
+            v-model="phone"
           />
         </div>
         <div class="input-wrapper w-[45%]">
@@ -65,8 +65,18 @@
           <input
             type="text"
             id="inputField"
+            placeholder="اسم العميل"
             class="input-field"
-            v-model="inputValue"
+            v-model="cust_name"
+          />
+        </div>
+        <div class="input-wrapper w-[45%]">
+          <label for="inputField" class="label">البريد الإلكتروني</label>
+          <input
+            type="text"
+            id="inputField"
+            class="input-field"
+            v-model="cust_email"
           />
         </div>
         <div class="input-wrapper w-[45%]">
@@ -75,7 +85,7 @@
             type="text"
             id="inputField"
             class="input-field"
-            v-model="inputValue"
+            v-model="cust_interest"
           />
         </div>
         <div class="input-wrapper w-[45%]">
@@ -84,7 +94,7 @@
             type="text"
             id="inputField"
             class="input-field"
-            v-model="inputValue"
+            v-model="sales_person"
           />
         </div>
         <div class="input-wrapper w-[45%]">
@@ -93,7 +103,7 @@
             type="text"
             id="inputField"
             class="input-field"
-            v-model="inputValue"
+            v-model="buying_method"
           />
         </div>
         <div class="input-wrapper w-[45%]">
@@ -102,7 +112,7 @@
             type="text"
             id="inputField"
             class="input-field"
-            v-model="inputValue"
+            v-model="cust_status"
           />
         </div>
         <div class="input-wrapper w-[45%]">
@@ -111,7 +121,7 @@
             type="text"
             id="inputField"
             class="input-field"
-            v-model="inputValue"
+            v-model="cust_budget"
           />
         </div>
         <div class="input-wrapper w-[45%]">
@@ -120,7 +130,7 @@
             type="text"
             id="inputField"
             class="input-field"
-            v-model="inputValue"
+            v-model="contact_method"
           />
         </div>
         <div class="input-wrapper w-[45%]">
@@ -129,7 +139,7 @@
             type="text"
             id="inputField"
             class="input-field"
-            v-model="inputValue"
+            v-model="neighborhood"
           />
         </div>
         <div class="input-wrapper w-[45%]">
@@ -138,10 +148,16 @@
             type="text"
             id="inputField"
             class="input-field"
-            v-model="inputValue"
+            v-model="city"
           />
         </div>
       </div>
+      <button
+        @click="saveData"
+        class="bg-[#3C757D] w-[97%] text-white font-bold py-2 px-4 rounded"
+      >
+        حفظ بيانات العميل الأولية
+      </button>
       <button
         @click="navigateTo('adding-unit')"
         class="bg-[#3C757D] w-[97%] text-white font-bold py-2 px-4 rounded"
@@ -198,18 +214,76 @@
 
 <script>
 import { mapState, mapMutations } from "vuex";
-
+import Swal from "sweetalert2";
+import axios from "axios";
 export default {
+  data() {
+    return {
+      created_by: "admin", // Assuming this field is required by your API
+
+      phone: "",
+      cust_name: "ulhv",
+      cust_interest: "",
+      sales_person: "",
+      cust_email: "",
+      buying_method: "",
+      cust_status: "",
+      cust_budget: "",
+      contact_method: "",
+      neighborhood: "",
+      city: "",
+    };
+  },
   computed: {
     ...mapState(["data1", "data2", "data3"]),
   },
   methods: {
+    showAlert(message, icon) {
+      Swal.fire({
+        title: message,
+        icon: icon,
+        iconColor: "#3C757D",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+    },
     ...mapMutations(["setData"]),
     updateData(field, value) {
       this.setData({ field, value });
     },
     navigateTo(route) {
       this.$router.push({ name: route });
+    },
+    saveData() {
+      const formData = new FormData();
+      formData.append("created_by", this.created_by);
+      formData.append("client_name", this.cust_name);
+      formData.append("client_phone", this.phone);
+      formData.append("client_email", this.cust_email); // Assuming required
+      formData.append("salesman", this.sales_person);
+      formData.append("client_interest", this.cust_interest);
+      formData.append("client_status", this.cust_status);
+      formData.append("payment_method", this.buying_method); // Assuming equivalent
+      formData.append("contact_method", this.contact_method);
+      formData.append("client_budget", this.cust_budget);
+      formData.append("city", this.city);
+      formData.append("neighborhood", this.neighborhood);
+
+      axios
+        .post("/clients", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer 18|XhEHSSTK6TICXWGwrHFzb1WpF2retMtebhQKpPfPdda8f6f3`,
+          },
+        })
+        .then((response) => {
+          this.showAlert("  تم حفظ البيانات بنجاح ", "success");
+          localStorage.setItem("client_id", response.data.client_id);
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
   },
 };

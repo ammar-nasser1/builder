@@ -252,5 +252,15 @@ const routes = [
     name: "formBuilder",
     component: () => import("../views/setting/formBuilder.vue"),
   },
+  {
+    path: "/data-editing",
+    name: "dataEditing",
+    component: () => import("../views/setting/datasetting/editPage.vue"),
+  },
+  {
+    path: "/add-building",
+    name: "addBuilding",
+    component: () => import("../views/projects/addunits/AddBuilding.vue"),
+  },
 ];
 export default routes;

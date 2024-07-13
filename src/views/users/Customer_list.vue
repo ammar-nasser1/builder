@@ -222,8 +222,8 @@
           <div class="card-foot">مقارنة بالشهر السابق (750)</div>
         </div>
       </div>
-      <div class="relative inline-block text-left">
-        <!-- <button
+      <!-- <div class="relative inline-block text-left">
+        <button
           @mouseover="showMenu"
           @click="showMenu"
           class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none"
@@ -242,8 +242,8 @@
               clip-rule="evenodd"
             />
           </svg>
-        </button> -->
-        <!-- <div
+        </button>
+        <div
           v-show="isMenuVisible"
           @mouseover="showMenu"
           @mouseleave="hideMenu"
@@ -274,8 +274,8 @@
               >Sign out</a
             >
           </div>
-        </div> -->
-      </div>
+        </div>
+      </div> -->
       <div class="w-[100%]">
         <div
           class="relative overflow-x-auto shadow-md sm:rounded-lg mt-24 border"
@@ -396,7 +396,7 @@
 </template>
 <script>
 const tabledata = require("/public/data/tabledata.json");
-
+import axios from "axios";
 export default {
   data() {
     return {
@@ -427,8 +427,24 @@ export default {
     hideMenu() {
       this.isMenuVisible = false;
     },
+    loadDataTable() {
+      axios
+        .get("/clients", {
+          headers: {
+            Authorization: `Bearer 2|6vJuyi5GpllUxthbIo7xbfhm0OqjvjATXiTFopLr50decf8f`,
+          },
+        })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
   },
-  mounted() {},
+  mounted() {
+    this.loadDataTable();
+  },
 };
 </script>
 

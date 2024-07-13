@@ -13,7 +13,7 @@
         $route.name !== 'login' &&
         $route.name !== 'home'
       "
-      class="lg:w-[80%] w-calc-100-minus-65 relative top-[76px] bg-[#fafbfd]"
+      class="lg:w-[80%] min-h-[100vh] w-calc-100-minus-65 relative top-[76px] bg-[#fafbfd]"
     >
       <router-view />
     </div>

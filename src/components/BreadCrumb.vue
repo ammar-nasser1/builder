@@ -1,5 +1,5 @@
 <template>
-  <div class="w-[100%] flex flex-col items-center justify-center">
+  <div class="w-full">
     <div class="bg-white mb-[50px] h-[100px] w-[100%] flex justify-center">
       <div class="flex w-[96%]">
         <div class="w-[60%] flex justify-start items-center gap-3">
@@ -64,8 +64,21 @@
                 />
               </svg>
             </button>
+            <button
+              v-if="data.btn.isbtn == true && data.btn.isfuc == false"
+              @click="navigateTo(data.btn.route)"
+              class="bg-[#3C757D] h-[32px] text-white rounded-[8px] px-4 text-nowrap"
+            >
+              {{ data.btn.name }}
+            </button>
+            <button
+              v-if="data.btn.isbtn == true && data.btn.isfuc == true"
+              class="bg-[#3C757D] h-[32px] text-white rounded-[8px] px-4 text-nowrap"
+            >
+              {{ data.btn.name }}
+            </button>
           </div>
-          <div dir="rtl" class="w-[60%] flex justify-start h-[32px]">
+          <div dir="rtl" class="w-[60%] flex justify-start">
             <form class="w-full">
               <div class="relative">
                 <div
@@ -90,7 +103,7 @@
                 <input
                   type="search"
                   id="default-search"
-                  class="block w-full pr-9 pt-0 pb-0 h-[32px] text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  class="block w-full pt-0 pb-0 h-[32px] pr-9 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="بحث"
                   required
                 />
@@ -109,85 +122,8 @@
           </div>
 
           <div>
-            <h1>اعدادات البيانات</h1>
+            <h1>{{ data.name }}</h1>
           </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="w-[96%] flex flex-col items-center">
-      <div class="w-[100%]">
-        <div class="relative overflow-x-auto rounded-lg pb-3 bg-white mt-2">
-          <div
-            class="flex justify-end h-[28px] py-8 bg-white items-center border-b"
-          >
-            <div
-              class="pr-5"
-              style="
-                font-family: 'Montserrat-Arabic';
-                font-size: 18px;
-                font-weight: 500;
-                line-height: 18px;
-                text-align: right;
-              "
-            >
-              <h1>{{ tabledata.table_name }}</h1>
-            </div>
-            <div
-              class="h-[37px]"
-              style="
-                border-left: 5px solid #3c757d !important;
-                border-top-left-radius: 20px;
-                border-bottom-left-radius: 20px;
-                font-family: 'Montserrat-Arabic';
-                font-size: 18px;
-                font-weight: 500;
-                line-height: 18px;
-                text-align: right;
-              "
-            ></div>
-          </div>
-          <table
-            dir="rtl"
-            class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
-          >
-            <thead
-              class="text-xs text-gray-700 border uppercase bg-[#D9E1E74D] dark:bg-gray-700 dark:text-gray-400"
-            >
-              <tr>
-                <th
-                  scope="col"
-                  class="px-6 py-2 font-semibold lg:text-lg"
-                  v-for="colum in tabledata.columns"
-                  :key="colum.id"
-                >
-                  {{ colum }}
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr
-                v-for="data in tabledata.data"
-                :key="data.id"
-                class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
-              >
-                <td class="px-6 py-2">{{ data["Form Type"] }}</td>
-                <td class="px-6 py-2">{{ data.Department }}</td>
-                <td class="px-6 py-2">{{ data["Last Modified On"] }}</td>
-                <td class="px-6 py-2">{{ data["Last Modified By"] }}</td>
-
-                <td class="flex items-center px-6 py-2 gap-2">
-                  <img
-                    src="/img/icons/EDit.png"
-                    @click="navigateTo('dataEditing')"
-                    alt=""
-                  />
-
-                  <img src="/img/icons/delet.png" alt="" />
-                </td>
-              </tr>
-            </tbody>
-          </table>
         </div>
       </div>
     </div>
@@ -196,62 +132,9 @@
 <script>
 export default {
   data() {
-    return {
-      tabledata: {
-        table_name: "إعدادات البيانات",
-        columns: [
-          "نوع النموذج ", // F
-          "القسم ", // Department
-          "آخر تعديل بتاريخ ", // Last Modified On
-          "آخر تعديل بواسطة ", // Last Modified By
-          "الإجراءات", // Name
-        ],
-        data: [
-          {
-            Record: 1,
-            Name: "Ahmed Gamal",
-            "Last Modified By": "Ahmed Gamal",
-            "Last Modified On": "2023/01/02",
-            Department: "العملاء ",
-            "Form Type": "إضافة عملاء",
-          },
-          {
-            Record: 2,
-            Name: "Mohamed Ahmed",
-            "Last Modified By": "Mohamed Ahmed",
-            "Last Modified On": "2023/01/02",
-            Department: "المشاريع ",
-            "Form Type": "إضافة مشروع ",
-          },
-          {
-            Record: 3,
-            Name: "Ahmed Ali",
-            "Last Modified By": "Ahmed Ali",
-            "Last Modified On": "2023/01/02",
-            Department: "المشاريع ",
-            "Form Type": "إضافة وحدة ",
-          },
-          {
-            Record: 4,
-            Name: "Ali Mostafa",
-            "Last Modified By": "Ali Mostafa",
-            "Last Modified On": "2023/01/02",
-            Department: "التأجير ",
-            "Form Type": "إضافة طلب تأجير",
-          },
-          {
-            Record: 5,
-            Name: "Ahmed Gamal",
-            "Last Modified By": "Ahmed Gamal",
-            "Last Modified On": "2023/01/02",
-            Department: "الصيانة",
-            "Form Type": "إضافة طلب صيانة",
-          },
-        ],
-      },
-    };
+    return {};
   },
-  components: {},
+  props: ["data"],
   methods: {
     navigateTo(name) {
       this.$router.push({ name: name });
@@ -260,43 +143,3 @@ export default {
   mounted() {},
 };
 </script>
-
-<style scoped>
-/* Add this to your CSS */
-/* Add this to your CSS */
-
-@font-face {
-  font-family: "Montserrat-Arabic";
-
-  src: url("/public/Montserrat-ArabicRegular/Montserrat-Arabic-Regular.ttf")
-    format("truetype");
-}
-* {
-  font-family: Montserrat-Arabic;
-}
-.card-name {
-  font-family: Montserrat-Arabic;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 16px;
-  letter-spacing: 0em;
-  text-align: right;
-}
-.card-num {
-  font-family: Montserrat-Arabic;
-  font-size: 40px;
-  font-weight: 500;
-  line-height: 40px;
-  letter-spacing: 0em;
-  text-align: right;
-  color: #3c757d;
-}
-.card-foot {
-  font-family: Montserrat-Arabic;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 14px;
-  letter-spacing: 0em;
-  text-align: right;
-}
-</style>

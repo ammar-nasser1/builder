@@ -1,6 +1,6 @@
 <template>
   <div class="mb-11">
-    <h1>Welcome to the Primary Data</h1>
+    <!-- <h1>Welcome to the Primary Data</h1>
     <input
       v-model="data1"
       @input="updateData('data1', $event.target.value)"
@@ -18,7 +18,7 @@
       @input="updateData('data3', $event.target.value)"
       type="text"
       placeholder="Data 3"
-    />
+    /> -->
     <div
       class="flex justify-end h-[32px] py-10 bg-white items-center"
       style="border-bottom: #3c757d 4px solid"
@@ -224,496 +224,777 @@
           />
         </div>
       </div>
-      <div class="flex justify-between w-full lg:p-20 flex-wrap">
-        <div class="lg:w-[45%] w-full rounded-xl">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13820.901577242525!2d31.168355399999996!3d30.001683800000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1458459ca4c1597f%3A0x37b9cb19be3aff4a!2sAraCan%20Pyramids%20Hotel!5e0!3m2!1sen!2seg!4v1713800845893!5m2!1sen!2seg"
-            style="border: 0"
-            allowfullscreen=""
-            loading="lazy"
-            class="rounded-xl lg:w-[50%] h-[200px] w-full"
-            referrerpolicy="no-referrer-when-downgrade"
-          ></iframe>
-        </div>
-        <div
-          class="lg:w-[45%] w-full flex flex-col justify-self-center items-center gap-12"
-        >
-          <h1 class="w-full text-right pt-3">عنوان المشروع</h1>
-          <div class="input-wrapper w-full">
-            <label for="inputField" class="label">Google map عنوان </label>
-            <input
-              type="text"
-              id="inputField"
-              class="input-field"
-              v-model="GoogleMapTitle"
-            />
-          </div>
-          <div class="input-wrapper w-full">
-            <label for="inputField" class="label">العنوان يدويا </label>
-            <input
-              type="text"
-              id="inputField"
-              class="input-field"
-              v-model="Addressmanually"
-            />
-          </div>
-        </div>
-      </div>
-      <div class="w-[98%] py-8">
-        <h1 class="w-full text-right p-9">ارفاق صور المشروع</h1>
-        <label
-          for="fileInput"
-          class="w-[98%] h-[100px] flex flex-row-reverse items-center gap-2 border-dashed border-2 justify-center rounded-2xl cursor-pointer"
-        >
-          <input
-            type="file"
-            id="fileInput"
-            class="hidden"
-            @change="handleFileChange"
-          />
-          <img
-            src="/img/icons/document-cloud.png"
-            alt="asd"
-            class="w-[64px] h-[64px]"
-          />
-          <p>ارفق الصور الخاصة بالمشروع</p>
-        </label>
-      </div>
-      <div class="w-[98%] py-8">
-        <h1 class="w-full text-right p-9">فيديو المشروع</h1>
-        <label
-          for="fileInput"
-          class="w-[98%] h-[100px] flex flex-row-reverse items-center gap-2 border-dashed border-2 justify-center rounded-2xl cursor-pointer"
-        >
-          <input
-            type="file"
-            id="fileInput"
-            class="hidden"
-            @change="handleFileChange"
-          />
-          <img
-            src="/img/icons/document-cloud.png"
-            alt="asd"
-            class="w-[64px] h-[64px]"
-          />
-          <p>ارفق الفيديو الخاصة بالمشروع</p>
-        </label>
-      </div>
-      <div class="w-full">
-        <h1 class="w-full text-right p-9">وصف المشروع</h1>
-        <div
-          class="w-[98%] mx-auto border p-7 rounded-2xl text-right"
-          dir="rtl"
-        >
-          دور مولد النص العربى أن يوفر على المصمم عناء البحث عن نص بديل لا علاقة
-          له بالموضوع الذى يتحدث عنه التصميم فيظهر بشكل لا يليق.هذا النص يمكن أن
-          يتم تركيبه على أي تصميم دون مشكلة فلن يبدو وكأنه نص منسوخ، غير منظم،
-          غير منسق، أو حتى غير مفهوم. لأنه مازال نصاً بديلاً ومؤقتاً.
-        </div>
-      </div>
-    </div>
-    <div class="flex flex-col h-[308px] gap-5 bg-white rounded-xl mt-12">
-      <div
-        class="flex justify-end h-[32px] py-10 bg-white items-center border-b rounded-se-xl rounded-ss-xl"
-      >
-        <div
-          class="pr-5"
-          style="
-            font-family: 'Montserrat-Arabic';
-            font-size: 18px;
-            font-weight: 500;
-            line-height: 18px;
-            text-align: right;
-          "
-        >
-          <h1>مميزات المشروع</h1>
-        </div>
-        <div
-          class="h-[37px]"
-          style="
-            border-left: 5px solid #3c757d !important;
-            border-top-left-radius: 20px;
-            border-bottom-left-radius: 20px;
-            font-family: 'Montserrat-Arabic';
-            font-size: 18px;
-            font-weight: 500;
-            line-height: 18px;
-            text-align: right;
-          "
-        ></div>
-      </div>
-
-      <div class="w-full flex justify-end gap-5 items-center">
-        <label
-          data-bs-toggle="modal"
-          data-bs-target="#AddFeature"
-          class="w-[125px] h-[120px] p-2 flex flex-col items-center gap-2 border justify-center rounded-2xl cursor-pointer"
-        >
-          <img src="/img/icons/+.png" alt="asd" class="w-[25px] h-[20px]" />
-          <p>إضافة مميزة</p>
-        </label>
-        <div
-          class="modal fade"
-          id="AddFeature"
-          tabindex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-              <div class="modal-header" dir="rtl">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">
-                  إضافة مميزات للمشروع
-                </h1>
-                <button
-                  class="btn-close m-0 bg-slate-50"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
+      <transition name="fade">
+        <div class="w-full" v-show="next[0].step">
+          <div class="flex justify-between w-full lg:p-20 flex-wrap">
+            <div class="lg:w-[45%] w-full rounded-xl">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13820.901577242525!2d31.168355399999996!3d30.001683800000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1458459ca4c1597f%3A0x37b9cb19be3aff4a!2sAraCan%20Pyramids%20Hotel!5e0!3m2!1sen!2seg!4v1713800845893!5m2!1sen!2seg"
+                style="border: 0"
+                allowfullscreen=""
+                loading="lazy"
+                class="rounded-xl lg:w-[50%] h-[200px] w-full"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+            <div
+              class="lg:w-[45%] w-full flex flex-col justify-self-center items-center gap-12"
+            >
+              <h1 class="w-full text-right pt-3">عنوان المشروع</h1>
+              <div class="input-wrapper w-full">
+                <label for="inputField" class="label">Google map عنوان </label>
+                <input
+                  type="text"
+                  id="inputField"
+                  class="input-field"
+                  v-model="GoogleMapTitle"
+                />
               </div>
-              <div class="modal-body">
-                <div class="bg-white rounded-xl w-full mx-auto divide-y-2">
-                  <div class="flex justify-end py-3">
-                    <div class="input-wrapper lg:w-[45%] w-full p-2">
-                      <label for="selectField" class="label">
-                        حدد مجموعة المميزات
-                      </label>
-                      <select
-                        id="selectField"
-                        class="select-field w-full"
-                        v-model="TotalNumberofUnits"
-                      >
-                        <option value="" disabled selected>
-                          اختر المجموعة الخاصة بالمميزات
-                        </option>
-                        <option
-                          v-for="option in options"
-                          :value="option.value"
-                          :key="option.value"
-                        >
-                          {{ option.label }}
-                        </option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="w-full flex justify-end">
-                    <div class="w-[85%] flex flex-col">
-                      <div class="flex gap-5 flex-row-reverse p-3">
-                        <h1>حدد مميزات المشروع</h1>
-                        <button class="bg-black rounded-xl text-white p-2">
-                          اختيار الكل
-                        </button>
-                      </div>
-                      <div class="flex gap-4 p-5">
-                        <label
-                          class="p-2 flex flex-col items-center gap-2 border justify-center rounded-2xl cursor-pointer"
-                        >
-                          <img
-                            src="/img/icons/camera.png"
-                            alt="asd"
-                            class="w-[64px] h-[64px]"
-                          />
-                          <p>كاميرات مراقبة</p> </label
-                        ><label
-                          class="p-2 flex flex-col items-center gap-2 border justify-center rounded-2xl cursor-pointer"
-                        >
-                          <img
-                            src="/img/icons/camera.png"
-                            alt="asd"
-                            class="w-[64px] h-[64px]"
-                          />
-                          <p>كاميرات مراقبة</p> </label
-                        ><label
-                          class="p-2 flex flex-col items-center gap-2 border justify-center rounded-2xl cursor-pointer"
-                        >
-                          <img
-                            src="/img/icons/camera.png"
-                            alt="asd"
-                            class="w-[64px] h-[64px]"
-                          />
-                          <p>كاميرات مراقبة</p> </label
-                        ><label
-                          class="p-2 flex flex-col items-center gap-2 border justify-center rounded-2xl cursor-pointer"
-                        >
-                          <img
-                            src="/img/icons/camera.png"
-                            alt="asd"
-                            class="w-[64px] h-[64px]"
-                          />
-                          <p>كاميرات مراقبة</p> </label
-                        ><label
-                          class="p-2 flex flex-col items-center gap-2 border justify-center rounded-2xl cursor-pointer"
-                        >
-                          <img
-                            src="/img/icons/camera.png"
-                            alt="asd"
-                            class="w-[64px] h-[64px]"
-                          />
-                          <p>كاميرات مراقبة</p>
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="modal-footer flex flex-col">
-                <button
-                  data-bs-dismiss="modal"
-                  @click="navigateTo('/Customerlist')"
-                  class="bg-[#3C757D] w-[97%] text-white font-bold py-2 px-4 rounded"
-                >
-                  إضافة مميزات للمشروع
-                </button>
-                <button
-                  class="bg-[#E1E6EF] w-[97%] text-[#3C757D] font-bold py-2 px-4 rounded"
-                >
-                  رجوع
-                </button>
+              <div class="input-wrapper w-full">
+                <label for="inputField" class="label">العنوان يدويا </label>
+                <input
+                  type="text"
+                  id="inputField"
+                  class="input-field"
+                  v-model="Addressmanually"
+                />
               </div>
             </div>
           </div>
+          <div class="w-[98%] py-8">
+            <h1 class="w-full text-right p-9">ارفاق صور المشروع</h1>
+            <label
+              for="fileInput"
+              class="w-[98%] h-[100px] flex flex-row-reverse items-center gap-2 border-dashed border-2 justify-center rounded-2xl cursor-pointer"
+            >
+              <input
+                type="file"
+                id="fileInput"
+                class="hidden"
+                @change="handleFileChange"
+              />
+              <img
+                src="/img/icons/document-cloud.png"
+                alt="asd"
+                class="w-[64px] h-[64px]"
+              />
+              <p>ارفق الصور الخاصة بالمشروع</p>
+            </label>
+          </div>
+          <div class="w-[98%] py-8">
+            <h1 class="w-full text-right p-9">فيديو المشروع</h1>
+            <label
+              for="fileInput"
+              class="w-[98%] h-[100px] flex flex-row-reverse items-center gap-2 border-dashed border-2 justify-center rounded-2xl cursor-pointer"
+            >
+              <input
+                type="file"
+                id="fileInput"
+                class="hidden"
+                @change="handleFileChange"
+              />
+              <img
+                src="/img/icons/document-cloud.png"
+                alt="asd"
+                class="w-[64px] h-[64px]"
+              />
+              <p>ارفق الفيديو الخاصة بالمشروع</p>
+            </label>
+          </div>
+          <div class="w-full">
+            <h1 class="w-full text-right p-9">وصف المشروع</h1>
+            <div
+              class="w-[98%] mx-auto border p-7 rounded-2xl text-right"
+              dir="rtl"
+            >
+              دور مولد النص العربى أن يوفر على المصمم عناء البحث عن نص بديل لا
+              علاقة له بالموضوع الذى يتحدث عنه التصميم فيظهر بشكل لا يليق.هذا
+              النص يمكن أن يتم تركيبه على أي تصميم دون مشكلة فلن يبدو وكأنه نص
+              منسوخ، غير منظم، غير منسق، أو حتى غير مفهوم. لأنه مازال نصاً
+              بديلاً ومؤقتاً.
+            </div>
+          </div>
         </div>
-        <label
-          class="p-2 flex flex-col items-center gap-2 border justify-center rounded-2xl cursor-pointer"
-        >
-          <img
-            src="/img/icons/camera.png"
-            alt="asd"
-            class="w-[64px] h-[64px]"
-          />
-          <p>كاميرات مراقبة</p>
-        </label>
-      </div>
+      </transition>
     </div>
-    <div class="flex flex-col h-[308px] gap-5 bg-white rounded-xl mt-12">
-      <div
-        class="flex justify-end h-[32px] py-10 bg-white items-center border-b rounded-se-xl rounded-ss-xl"
-      >
-        <div
-          class="pr-5"
-          style="
-            font-family: 'Montserrat-Arabic';
-            font-size: 18px;
-            font-weight: 500;
-            line-height: 18px;
-            text-align: right;
-          "
-        >
-          <h1>المرافق والخدمات القريبة</h1>
-        </div>
-        <div
-          class="h-[37px]"
-          style="
-            border-left: 5px solid #3c757d !important;
-            border-top-left-radius: 20px;
-            border-bottom-left-radius: 20px;
-            font-family: 'Montserrat-Arabic';
-            font-size: 18px;
-            font-weight: 500;
-            line-height: 18px;
-            text-align: right;
-          "
-        ></div>
-      </div>
+    <transition name="fade">
+      <div v-show="next[0].step" class="w-full">
+        <div class="flex flex-col h-[308px] gap-5 bg-white rounded-xl mt-12">
+          <div
+            class="flex justify-end h-[32px] py-10 bg-white items-center border-b rounded-se-xl rounded-ss-xl"
+          >
+            <div
+              class="pr-5"
+              style="
+                font-family: 'Montserrat-Arabic';
+                font-size: 18px;
+                font-weight: 500;
+                line-height: 18px;
+                text-align: right;
+              "
+            >
+              <h1>مميزات المشروع</h1>
+            </div>
+            <div
+              class="h-[37px]"
+              style="
+                border-left: 5px solid #3c757d !important;
+                border-top-left-radius: 20px;
+                border-bottom-left-radius: 20px;
+                font-family: 'Montserrat-Arabic';
+                font-size: 18px;
+                font-weight: 500;
+                line-height: 18px;
+                text-align: right;
+              "
+            ></div>
+          </div>
 
-      <div class="w-full flex justify-end gap-5 items-center">
-        <label
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
-          class="w-[125px] h-[120px] p-2 flex flex-col items-center gap-2 border justify-center rounded-2xl cursor-pointer"
-        >
-          <img src="/img/icons/+.png" alt="asd" class="w-[25px] h-[20px]" />
-          <p>كاميرات مراقبة</p>
-        </label>
-        <label
-          class="p-2 flex flex-col items-center gap-2 border justify-center rounded-2xl cursor-pointer"
-        >
-          <img
-            src="/img/icons/market.png"
-            alt="asd"
-            class="w-[48px] h-[25px]"
-          />
-          <p>هايبر سعودي</p>
-        </label>
-      </div>
-    </div>
-    <div class="flex flex-col h-[308px] gap-5 bg-white rounded-xl mt-12">
-      <div
-        class="flex justify-end h-[32px] py-10 bg-white items-center border-b rounded-se-xl rounded-ss-xl"
-      >
-        <div
-          class="pr-5"
-          style="
-            font-family: 'Montserrat-Arabic';
-            font-size: 18px;
-            font-weight: 500;
-            line-height: 18px;
-            text-align: right;
-          "
-        >
-          <h1>الضمانات</h1>
+          <div class="w-full flex justify-end gap-5 items-center">
+            <label
+              data-bs-toggle="modal"
+              data-bs-target="#AddFeature"
+              class="w-[125px] h-[120px] p-2 flex flex-col items-center gap-2 border justify-center rounded-2xl cursor-pointer"
+            >
+              <img src="/img/icons/+.png" alt="asd" class="w-[25px] h-[20px]" />
+              <p>إضافة مميزة</p>
+            </label>
+            <div
+              class="modal fade"
+              id="AddFeature"
+              tabindex="-1"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                  <div class="modal-header" dir="rtl">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">
+                      إضافة مميزات للمشروع
+                    </h1>
+                    <button
+                      class="btn-close m-0 bg-slate-50"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="bg-white rounded-xl w-full mx-auto divide-y-2">
+                      <div class="flex justify-end py-3">
+                        <div class="input-wrapper lg:w-[45%] w-full p-2">
+                          <label for="selectField" class="label">
+                            حدد مجموعة المميزات
+                          </label>
+                          <select
+                            id="selectField"
+                            class="select-field w-full"
+                            v-model="TotalNumberofUnits"
+                          >
+                            <option value="" disabled selected>
+                              اختر المجموعة الخاصة بالمميزات
+                            </option>
+                            <option
+                              v-for="option in options"
+                              :value="option.value"
+                              :key="option.value"
+                            >
+                              {{ option.label }}
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="w-full flex justify-end">
+                        <div class="w-[85%] flex flex-col">
+                          <div class="flex gap-5 flex-row-reverse p-3">
+                            <h1>حدد مميزات المشروع</h1>
+                            <button class="bg-black rounded-xl text-white p-2">
+                              اختيار الكل
+                            </button>
+                          </div>
+                          <div class="flex gap-4 p-5">
+                            <label
+                              class="p-2 flex flex-col items-center gap-2 border justify-center rounded-2xl cursor-pointer"
+                            >
+                              <img
+                                src="/img/icons/camera.png"
+                                alt="asd"
+                                class="w-[64px] h-[64px]"
+                              />
+                              <p>كاميرات مراقبة</p> </label
+                            ><label
+                              class="p-2 flex flex-col items-center gap-2 border justify-center rounded-2xl cursor-pointer"
+                            >
+                              <img
+                                src="/img/icons/camera.png"
+                                alt="asd"
+                                class="w-[64px] h-[64px]"
+                              />
+                              <p>كاميرات مراقبة</p> </label
+                            ><label
+                              class="p-2 flex flex-col items-center gap-2 border justify-center rounded-2xl cursor-pointer"
+                            >
+                              <img
+                                src="/img/icons/camera.png"
+                                alt="asd"
+                                class="w-[64px] h-[64px]"
+                              />
+                              <p>كاميرات مراقبة</p> </label
+                            ><label
+                              class="p-2 flex flex-col items-center gap-2 border justify-center rounded-2xl cursor-pointer"
+                            >
+                              <img
+                                src="/img/icons/camera.png"
+                                alt="asd"
+                                class="w-[64px] h-[64px]"
+                              />
+                              <p>كاميرات مراقبة</p> </label
+                            ><label
+                              class="p-2 flex flex-col items-center gap-2 border justify-center rounded-2xl cursor-pointer"
+                            >
+                              <img
+                                src="/img/icons/camera.png"
+                                alt="asd"
+                                class="w-[64px] h-[64px]"
+                              />
+                              <p>كاميرات مراقبة</p>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer flex flex-col">
+                    <button
+                      data-bs-dismiss="modal"
+                      @click="navigateTo('/Customerlist')"
+                      class="bg-[#3C757D] w-[97%] text-white font-bold py-2 px-4 rounded"
+                    >
+                      إضافة مميزات للمشروع
+                    </button>
+                    <button
+                      class="bg-[#E1E6EF] w-[97%] text-[#3C757D] font-bold py-2 px-4 rounded"
+                    >
+                      رجوع
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <label
+              class="p-2 flex flex-col items-center gap-2 border justify-center rounded-2xl cursor-pointer"
+            >
+              <img
+                src="/img/icons/camera.png"
+                alt="asd"
+                class="w-[64px] h-[64px]"
+              />
+              <p>كاميرات مراقبة</p>
+            </label>
+          </div>
         </div>
-        <div
-          class="h-[37px]"
-          style="
-            border-left: 5px solid #3c757d !important;
-            border-top-left-radius: 20px;
-            border-bottom-left-radius: 20px;
-            font-family: 'Montserrat-Arabic';
-            font-size: 18px;
-            font-weight: 500;
-            line-height: 18px;
-            text-align: right;
-          "
-        ></div>
-      </div>
+        <div class="flex flex-col h-[308px] gap-5 bg-white rounded-xl mt-12">
+          <div
+            class="flex justify-end h-[32px] py-10 bg-white items-center border-b rounded-se-xl rounded-ss-xl"
+          >
+            <div
+              class="pr-5"
+              style="
+                font-family: 'Montserrat-Arabic';
+                font-size: 18px;
+                font-weight: 500;
+                line-height: 18px;
+                text-align: right;
+              "
+            >
+              <h1>المرافق والخدمات القريبة</h1>
+            </div>
+            <div
+              class="h-[37px]"
+              style="
+                border-left: 5px solid #3c757d !important;
+                border-top-left-radius: 20px;
+                border-bottom-left-radius: 20px;
+                font-family: 'Montserrat-Arabic';
+                font-size: 18px;
+                font-weight: 500;
+                line-height: 18px;
+                text-align: right;
+              "
+            ></div>
+          </div>
 
-      <div class="w-full flex justify-end gap-5 items-center">
-        <label
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
-          class="w-[125px] h-[140px] flex flex-col items-center gap-2 border justify-center rounded-2xl cursor-pointer"
-        >
-          <img src="/img/icons/+.png" alt="asd" class="w-[25px] h-[20px]" />
-          <p>إضافة مميزة</p>
-        </label>
-        <label
-          class="p-4 flex flex-col items-center gap-2 border justify-center rounded-2xl cursor-pointer"
-        >
-          <img
-            src="/img/icons/Elevators.png"
-            alt="asd"
-            class="w-[48px] h-[25px]"
-          />
-          <p>المصاعد25 سنة</p>
-          <p class="text-[#8D6E3D]">الشركة العالمية للصيانة</p>
-        </label>
-        <label
-          class="p-4 flex flex-col items-center gap-2 border justify-center rounded-2xl cursor-pointer"
-        >
-          <img
-            src="/img/icons/factory.png"
-            alt="asd"
-            class="w-[48px] h-[25px]"
-          />
-          <p>المصاعد25 سنة</p>
-          <p class="text-[#8D6E3D]">الشركة العالمية للصيانة</p>
-        </label>
-      </div>
-    </div>
-    <div class="flex flex-col h-[308px] gap-5 bg-white rounded-xl mt-12">
-      <div
-        class="flex justify-end h-[32px] py-10 bg-white items-center border-b rounded-se-xl rounded-ss-xl"
-      >
-        <div
-          class="pr-5"
-          style="
-            font-family: 'Montserrat-Arabic';
-            font-size: 18px;
-            font-weight: 500;
-            line-height: 18px;
-            text-align: right;
-          "
-        >
-          <h1>خدمات ما بعد البيع</h1>
+          <div class="w-full flex justify-end gap-5 items-center">
+            <label
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+              class="w-[125px] h-[120px] p-2 flex flex-col items-center gap-2 border justify-center rounded-2xl cursor-pointer"
+            >
+              <img src="/img/icons/+.png" alt="asd" class="w-[25px] h-[20px]" />
+              <p>كاميرات مراقبة</p>
+            </label>
+            <label
+              class="p-2 flex flex-col items-center gap-2 border justify-center rounded-2xl cursor-pointer"
+            >
+              <img
+                src="/img/icons/market.png"
+                alt="asd"
+                class="w-[48px] h-[25px]"
+              />
+              <p>هايبر سعودي</p>
+            </label>
+          </div>
         </div>
-        <div
-          class="h-[37px]"
-          style="
-            border-left: 5px solid #3c757d !important;
-            border-top-left-radius: 20px;
-            border-bottom-left-radius: 20px;
-            font-family: 'Montserrat-Arabic';
-            font-size: 18px;
-            font-weight: 500;
-            line-height: 18px;
-            text-align: right;
-          "
-        ></div>
-      </div>
+        <div class="flex flex-col h-[308px] gap-5 bg-white rounded-xl mt-12">
+          <div
+            class="flex justify-end h-[32px] py-10 bg-white items-center border-b rounded-se-xl rounded-ss-xl"
+          >
+            <div
+              class="pr-5"
+              style="
+                font-family: 'Montserrat-Arabic';
+                font-size: 18px;
+                font-weight: 500;
+                line-height: 18px;
+                text-align: right;
+              "
+            >
+              <h1>الضمانات</h1>
+            </div>
+            <div
+              class="h-[37px]"
+              style="
+                border-left: 5px solid #3c757d !important;
+                border-top-left-radius: 20px;
+                border-bottom-left-radius: 20px;
+                font-family: 'Montserrat-Arabic';
+                font-size: 18px;
+                font-weight: 500;
+                line-height: 18px;
+                text-align: right;
+              "
+            ></div>
+          </div>
 
-      <div class="w-full flex justify-end gap-5 items-center">
-        <label
-          class="p-4 flex flex-col items-center gap-2 border justify-center rounded-2xl cursor-pointer"
-        >
-          <img
-            src="/img/icons/tickey.png"
-            alt="asd"
-            class="w-[48px] h-[25px]"
-          />
-          <p>سداد فاتورة شركة المياه</p>
-          <p class="text-[#8D6E3D]">للسنة الاولى فقط</p>
-        </label>
-        <label
-          class="p-4 flex flex-col items-center gap-2 border justify-center rounded-2xl cursor-pointer"
-        >
-          <img
-            src="/img/icons/tickey.png"
-            alt="asd"
-            class="w-[48px] h-[25px]"
-          />
-          <p>سداد فاتورة شركة المياه</p>
-          <p class="text-[#8D6E3D]">للسنة الاولى فقط</p>
-        </label>
-      </div>
-    </div>
-    <div class="flex flex-col h-[308px] gap-5 bg-white rounded-xl mt-12">
-      <div
-        class="flex justify-end h-[32px] py-10 bg-white items-center border-b rounded-se-xl rounded-ss-xl"
-      >
-        <div
-          class="pr-5"
-          style="
-            font-family: 'Montserrat-Arabic';
-            font-size: 18px;
-            font-weight: 500;
-            line-height: 18px;
-            text-align: right;
-          "
-        >
-          <h1>الخدمات التشغيلية</h1>
+          <div class="w-full flex justify-end gap-5 items-center">
+            <label
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+              class="w-[125px] h-[140px] flex flex-col items-center gap-2 border justify-center rounded-2xl cursor-pointer"
+            >
+              <img src="/img/icons/+.png" alt="asd" class="w-[25px] h-[20px]" />
+              <p>إضافة مميزة</p>
+            </label>
+            <label
+              class="p-4 flex flex-col items-center gap-2 border justify-center rounded-2xl cursor-pointer"
+            >
+              <img
+                src="/img/icons/Elevators.png"
+                alt="asd"
+                class="w-[48px] h-[25px]"
+              />
+              <p>المصاعد25 سنة</p>
+              <p class="text-[#8D6E3D]">الشركة العالمية للصيانة</p>
+            </label>
+            <label
+              class="p-4 flex flex-col items-center gap-2 border justify-center rounded-2xl cursor-pointer"
+            >
+              <img
+                src="/img/icons/factory.png"
+                alt="asd"
+                class="w-[48px] h-[25px]"
+              />
+              <p>المصاعد25 سنة</p>
+              <p class="text-[#8D6E3D]">الشركة العالمية للصيانة</p>
+            </label>
+          </div>
         </div>
-        <div
-          class="h-[37px]"
-          style="
-            border-left: 5px solid #3c757d !important;
-            border-top-left-radius: 20px;
-            border-bottom-left-radius: 20px;
-            font-family: 'Montserrat-Arabic';
-            font-size: 18px;
-            font-weight: 500;
-            line-height: 18px;
-            text-align: right;
-          "
-        ></div>
-      </div>
+        <div class="flex flex-col h-[308px] gap-5 bg-white rounded-xl mt-12">
+          <div
+            class="flex justify-end h-[32px] py-10 bg-white items-center border-b rounded-se-xl rounded-ss-xl"
+          >
+            <div
+              class="pr-5"
+              style="
+                font-family: 'Montserrat-Arabic';
+                font-size: 18px;
+                font-weight: 500;
+                line-height: 18px;
+                text-align: right;
+              "
+            >
+              <h1>خدمات ما بعد البيع</h1>
+            </div>
+            <div
+              class="h-[37px]"
+              style="
+                border-left: 5px solid #3c757d !important;
+                border-top-left-radius: 20px;
+                border-bottom-left-radius: 20px;
+                font-family: 'Montserrat-Arabic';
+                font-size: 18px;
+                font-weight: 500;
+                line-height: 18px;
+                text-align: right;
+              "
+            ></div>
+          </div>
 
-      <div class="w-full flex justify-end gap-5 items-center">
-        <label
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
-          class="w-[96px] h-[96px] p-2 flex flex-col items-center gap-2 border justify-center rounded-2xl cursor-pointer"
-        >
-          <img src="/img/icons/+.png" alt="asd" class="w-[25px] h-[20px]" />
-          <p class="text-[10px]">إضافة خدمة</p>
-        </label>
-        <label
-          class="p-2 h-[96px] w-[96px] flex flex-col items-center gap-2 border justify-center rounded-2xl cursor-pointer"
-        >
-          <img
-            src="/img/icons/electricity.png"
-            alt="asd"
-            class="w-[36px] h-[36px]"
-          />
-          <p>كهرباء</p>
-        </label>
-        <label
-          class="p-2 h-[96px] w-[96px] flex flex-col items-center gap-2 border justify-center rounded-2xl cursor-pointer"
-        >
-          <img src="/img/icons/water.png" alt="asd" class="w-[36px] h-[36px]" />
-          <p>مياة</p>
-        </label>
+          <div class="w-full flex justify-end gap-5 items-center">
+            <label
+              class="p-4 flex flex-col items-center gap-2 border justify-center rounded-2xl cursor-pointer"
+            >
+              <img
+                src="/img/icons/tickey.png"
+                alt="asd"
+                class="w-[48px] h-[25px]"
+              />
+              <p>سداد فاتورة شركة المياه</p>
+              <p class="text-[#8D6E3D]">للسنة الاولى فقط</p>
+            </label>
+            <label
+              class="p-4 flex flex-col items-center gap-2 border justify-center rounded-2xl cursor-pointer"
+            >
+              <img
+                src="/img/icons/tickey.png"
+                alt="asd"
+                class="w-[48px] h-[25px]"
+              />
+              <p>سداد فاتورة شركة المياه</p>
+              <p class="text-[#8D6E3D]">للسنة الاولى فقط</p>
+            </label>
+          </div>
+        </div>
+        <div class="flex flex-col h-[308px] gap-5 bg-white rounded-xl mt-12">
+          <div
+            class="flex justify-end h-[32px] py-10 bg-white items-center border-b rounded-se-xl rounded-ss-xl"
+          >
+            <div
+              class="pr-5"
+              style="
+                font-family: 'Montserrat-Arabic';
+                font-size: 18px;
+                font-weight: 500;
+                line-height: 18px;
+                text-align: right;
+              "
+            >
+              <h1>الخدمات التشغيلية</h1>
+            </div>
+            <div
+              class="h-[37px]"
+              style="
+                border-left: 5px solid #3c757d !important;
+                border-top-left-radius: 20px;
+                border-bottom-left-radius: 20px;
+                font-family: 'Montserrat-Arabic';
+                font-size: 18px;
+                font-weight: 500;
+                line-height: 18px;
+                text-align: right;
+              "
+            ></div>
+          </div>
+
+          <div class="w-full flex justify-end gap-5 items-center">
+            <label
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+              class="w-[96px] h-[96px] p-2 flex flex-col items-center gap-2 border justify-center rounded-2xl cursor-pointer"
+            >
+              <img src="/img/icons/+.png" alt="asd" class="w-[25px] h-[20px]" />
+              <p class="text-[10px]">إضافة خدمة</p>
+            </label>
+            <label
+              class="p-2 h-[96px] w-[96px] flex flex-col items-center gap-2 border justify-center rounded-2xl cursor-pointer"
+            >
+              <img
+                src="/img/icons/electricity.png"
+                alt="asd"
+                class="w-[36px] h-[36px]"
+              />
+              <p>كهرباء</p>
+            </label>
+            <label
+              class="p-2 h-[96px] w-[96px] flex flex-col items-center gap-2 border justify-center rounded-2xl cursor-pointer"
+            >
+              <img
+                src="/img/icons/water.png"
+                alt="asd"
+                class="w-[36px] h-[36px]"
+              />
+              <p>مياة</p>
+            </label>
+          </div>
+        </div>
       </div>
+    </transition>
+    <transition name="fade">
+      <div class="w-full flex flex-col gap-12 my-20" v-show="next[1].step">
+        <div class="flex flex-col h-[308px] gap-5 bg-white rounded-xl">
+          <div
+            class="flex rounded-se-xl rounded-ss-xl justify-end h-[32px] py-10 bg-white items-center border-b-2"
+          >
+            <div
+              class="pr-5"
+              style="
+                font-family: 'Montserrat-Arabic';
+                font-size: 18px;
+                font-weight: 500;
+                line-height: 18px;
+                text-align: right;
+              "
+            >
+              <h1>مرفقات المشروع</h1>
+            </div>
+            <div
+              class="h-[37px]"
+              style="
+                border-left: 5px solid #3c757d !important;
+                border-top-left-radius: 20px;
+                border-bottom-left-radius: 20px;
+                font-family: 'Montserrat-Arabic';
+                font-size: 18px;
+                font-weight: 500;
+                line-height: 18px;
+                text-align: right;
+              "
+            ></div>
+          </div>
+          <div class="w-full flex justify-end gap-5 items-center rounded-xl">
+            <div
+              class="w-[160px] h-[172px] flex flex-col items-center gap-2 border justify-center rounded-2xl"
+            >
+              <img
+                src="/img/icons/document-text.png"
+                alt="asd"
+                class="w-[64px] h-[64px]"
+              />
+              <p>الملفات</p>
+
+              <div class="w-full border-t">
+                <div
+                  class="flex mx-auto justify-between items-end w-[85%] border-t h-[30px]"
+                >
+                  <p class="text-red-600">حذف</p>
+                  <p>عرض</p>
+                </div>
+              </div>
+            </div>
+            <label
+              for="fileInput"
+              class="w-[160px] h-[172px] flex flex-col items-center gap-2 border justify-center rounded-2xl cursor-pointer"
+            >
+              <input
+                type="file"
+                id="fileInput"
+                class="hidden"
+                @change="handleFileChange"
+              />
+              <img
+                src="/img/icons/document-cloud.png"
+                alt="asd"
+                class="w-[64px] h-[64px]"
+              />
+              <p>الملفات</p>
+            </label>
+            <label
+              for="fileInput"
+              class="w-[160px] h-[172px] flex flex-col items-center gap-2 border justify-center rounded-2xl cursor-pointer"
+            >
+              <input
+                type="file"
+                id="fileInput"
+                class="hidden"
+                @change="handleFileChange"
+              />
+              <img
+                src="/img/icons/document-cloud.png"
+                alt="asd"
+                class="w-[64px] h-[64px]"
+              />
+              <p>الملفات</p>
+            </label>
+            <label
+              for="fileInput"
+              class="w-[160px] h-[172px] flex flex-col items-center gap-2 border justify-center rounded-2xl cursor-pointer"
+            >
+              <input
+                type="file"
+                id="fileInput"
+                class="hidden"
+                @change="handleFileChange"
+              />
+              <img
+                src="/img/icons/document-cloud.png"
+                alt="asd"
+                class="w-[64px] h-[64px]"
+              />
+              <p>الملفات</p>
+            </label>
+
+            <label
+              for="fileInput"
+              class="w-[160px] h-[172px] flex flex-col items-center gap-2 border justify-center rounded-2xl cursor-pointer"
+            >
+              <input
+                type="file"
+                id="fileInput"
+                class="hidden"
+                @change="handleFileChange"
+              />
+              <img
+                src="/img/icons/document-cloud.png"
+                alt="asd"
+                class="w-[64px] h-[64px]"
+              />
+              <p>الملفات</p>
+            </label>
+          </div>
+        </div>
+        <div class="flex flex-col h-[308px] gap-5 bg-white rounded-xl">
+          <div
+            class="flex rounded-se-xl rounded-ss-xl justify-end h-[32px] py-10 bg-white items-center border-b-2"
+          >
+            <div
+              class="pr-5"
+              style="
+                font-family: 'Montserrat-Arabic';
+                font-size: 18px;
+                font-weight: 500;
+                line-height: 18px;
+                text-align: right;
+              "
+            >
+              <h1>مرفقات المشروع</h1>
+            </div>
+            <div
+              class="h-[37px]"
+              style="
+                border-left: 5px solid #3c757d !important;
+                border-top-left-radius: 20px;
+                border-bottom-left-radius: 20px;
+                font-family: 'Montserrat-Arabic';
+                font-size: 18px;
+                font-weight: 500;
+                line-height: 18px;
+                text-align: right;
+              "
+            ></div>
+          </div>
+          <div class="w-full flex justify-end gap-5 items-center rounded-xl">
+            <div
+              class="w-[160px] h-[172px] flex flex-col items-center gap-2 border justify-center rounded-2xl"
+            >
+              <img
+                src="/img/icons/document-text.png"
+                alt="asd"
+                class="w-[64px] h-[64px]"
+              />
+              <p>الملفات</p>
+
+              <div class="w-full border-t">
+                <div
+                  class="flex mx-auto justify-between items-end w-[85%] border-t h-[30px]"
+                >
+                  <p class="text-red-600">حذف</p>
+                  <p>عرض</p>
+                </div>
+              </div>
+            </div>
+            <label
+              for="fileInput"
+              class="w-[160px] h-[172px] flex flex-col items-center gap-2 border justify-center rounded-2xl cursor-pointer"
+            >
+              <input
+                type="file"
+                id="fileInput"
+                class="hidden"
+                @change="handleFileChange"
+              />
+              <img
+                src="/img/icons/document-cloud.png"
+                alt="asd"
+                class="w-[64px] h-[64px]"
+              />
+              <p>الملفات</p>
+            </label>
+            <label
+              for="fileInput"
+              class="w-[160px] h-[172px] flex flex-col items-center gap-2 border justify-center rounded-2xl cursor-pointer"
+            >
+              <input
+                type="file"
+                id="fileInput"
+                class="hidden"
+                @change="handleFileChange"
+              />
+              <img
+                src="/img/icons/document-cloud.png"
+                alt="asd"
+                class="w-[64px] h-[64px]"
+              />
+              <p>الملفات</p>
+            </label>
+            <label
+              for="fileInput"
+              class="w-[160px] h-[172px] flex flex-col items-center gap-2 border justify-center rounded-2xl cursor-pointer"
+            >
+              <input
+                type="file"
+                id="fileInput"
+                class="hidden"
+                @change="handleFileChange"
+              />
+              <img
+                src="/img/icons/document-cloud.png"
+                alt="asd"
+                class="w-[64px] h-[64px]"
+              />
+              <p>الملفات</p>
+            </label>
+
+            <label
+              for="fileInput"
+              class="w-[160px] h-[172px] flex flex-col items-center gap-2 border justify-center rounded-2xl cursor-pointer"
+            >
+              <input
+                type="file"
+                id="fileInput"
+                class="hidden"
+                @change="handleFileChange"
+              />
+              <img
+                src="/img/icons/document-cloud.png"
+                alt="asd"
+                class="w-[64px] h-[64px]"
+              />
+              <p>الملفات</p>
+            </label>
+          </div>
+        </div>
+      </div>
+    </transition>
+    <div class="w-[97%] my-7 flex justify-start">
+      <button
+        @click="scrollUp(0)"
+        v-show="!next[0].step"
+        class="bg-[#3C757D] w-40 text-white font-bold py-2 px-4 rounded"
+      >
+        التالي
+      </button>
+      <button
+        @click="scrollUp(1)"
+        v-show="next[0].step && !next[1].step"
+        class="bg-[#3C757D] w-40 text-white font-bold py-2 px-4 rounded"
+      >
+        التالي
+      </button>
+      <button
+        v-show="next[1].step"
+        class="bg-[#3C757D] w-40 text-white font-bold py-2 px-4 rounded"
+      >
+        التالي
+      </button>
     </div>
     <div
       class="modal fade"
@@ -961,6 +1242,8 @@ export default {
         { value: "DE", label: "Germany" },
       ],
       showUpfile: false,
+      next: [{ step: false }, { step: false }],
+      next2: false,
     };
   },
   computed: {
@@ -973,6 +1256,16 @@ export default {
     },
     navigateTo(route) {
       this.$router.push({ name: route });
+    },
+    scrollUp(b) {
+      this.next[b].step = true;
+      setTimeout(() => {
+        window.scrollBy({
+          top: 800,
+          left: 0,
+          behavior: "auto",
+        });
+      }, 100);
     },
   },
 };

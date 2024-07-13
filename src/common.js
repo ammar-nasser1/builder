@@ -48,10 +48,9 @@ export const linksAsDev = [
   },
   {
     id: 2,
-    name: "المشاريع",
+    name: "العقارات",
     icon: "fa fa-project-diagram",
-    route: "projects-list",
-    dropdown: false,
+    dropdown: true,
     isOpen: false,
     svgIcon: ` <svg
             width="18"
@@ -88,7 +87,11 @@ export const linksAsDev = [
               stroke-linejoin="round"
             />
           </svg>`,
-    items: [],
+    items: [
+      { name: "المشاريع", route: "projects-list" },
+      { name: "الوحدات", route: "units-list" },
+      { name: "تصنيف العقارات", route: "plans-list" },
+    ],
   },
   {
     id: 3,
@@ -434,10 +437,17 @@ export const linksAsUser = [
 </svg>
 `,
     items: [
-      { name: "الضمانات", route: "guarantees-page" },
-      { name: "الايقونات", route: "iconspage" },
-      { name: "إعدادات البيانات", route: "datasetting" },
-      { name: "الأدوار", route: "#" },
+      { name: "تصنيفات", route: "calssification-page" },
+      { name: "خدمات", route: "subservicesPage" },
+
+      { name: "تصنيفات فرعية", route: "subclasses-page" },
+      { name: "المجموعات", route: "#" },
+      { name: "قطع الغيار", route: "SparePage" },
+      { name: "عروض وخصومات", route: "OfferPage" },
+      { name: "نطاق الخدمة", route: "ServiceScopePage" },
+      { name: "رسوم إضافية", route: "AdditionalFeesPage" },
+      { name: "المجموعات", route: "#" },
+      { name: "المجموعات", route: "#" },
     ],
   },
   {

@@ -68,7 +68,7 @@
             </button>
 
             <button
-              @click="navigateTo('add-project')"
+              @click="navigateTo('add-project/project-data')"
               class="bg-[#3C757D] h-[32px] text-white rounded-[8px] lg:px-4 md:text-[1vw] xl:text-sm"
             >
               <h1 class="px-2 w-full text-nowrap">اضافة مشروع الجديد</h1>

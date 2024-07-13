@@ -156,7 +156,7 @@
           class="flex rounded-se-xl rounded-ss-xl justify-end h-[32px] py-10 bg-white items-center border-b shadow-sm"
         >
           <div
-            class="pr-5"
+            class="px-2 w-full flex justify-between items-center"
             style="
               font-family: 'Montserrat-Arabic';
               font-size: 18px;
@@ -165,6 +165,12 @@
               text-align: right;
             "
           >
+            <button
+              class="bg-[#3C757D] text-white font-bold py-2 px-4 rounded"
+              @click="getdata"
+            >
+              حفظ مرفقات العميل
+            </button>
             <h1>مرفقات العميل</h1>
           </div>
           <div
@@ -181,95 +187,88 @@
             "
           ></div>
         </div>
-        <div class="w-full flex justify-end gap-5 items-center rounded-xl">
+        <div
+          class="w-full flex-wrap flex justify-end gap-5 items-center rounded-xl"
+        >
+          <!-- <img :src="imgf" alt="as" />
+          <img :src="getFullImageUrl(imagePath)" alt="Example Image" /> -->
+          {{ imgf.national_id }}
           <div
+            v-for="(file, index) in files"
+            :key="index"
             class="w-[160px] h-[172px] flex flex-col items-center gap-2 border justify-center rounded-2xl"
           >
-            <img
-              src="/img/icons/document-text.png"
-              alt="asd"
-              class="w-[64px] h-[64px]"
-            />
-            <p>الملفات</p>
+            <div
+              v-if="file.value"
+              class="w-[160px] h-[172px] flex flex-col items-center gap-2 border justify-center rounded-2xl"
+            >
+              <img
+                src="/img/icons/document-text.png"
+                alt="asd"
+                class="w-[64px] h-[64px]"
+              />
+              <p>{{ file.label }}</p>
 
-            <div class="w-full border-t">
-              <div
-                class="flex mx-auto justify-between items-end w-[85%] border-t h-[30px]"
-              >
-                <p class="text-red-600">حذف</p>
-                <p>عرض</p>
+              <div class="w-full border-t">
+                <div
+                  class="flex mx-auto justify-between items-end w-[85%] border-t h-[30px]"
+                >
+                  <p
+                    class="text-red-600 cursor-pointer"
+                    @click="removeFile(index)"
+                  >
+                    حذف
+                  </p>
+                  <p>
+                    <a :href="file.value" target="_blank">عرض</a>
+                  </p>
+                </div>
               </div>
             </div>
+            <!-- <template v-if="file.value">
+              <div class="w-full border-t">
+                <div
+                  class="flex mx-auto justify-between items-end w-[85%] border-t h-[30px]"
+                >
+                  <img
+                    src="/img/icons/document-text.png"
+                    alt="asd"
+                    class="w-[64px] h-[64px]"
+                  />
+                  <p
+                    class="text-red-600 cursor-pointer"
+                    @click="removeFile(file.value)"
+                  >
+                    حذف
+                  </p>
+                  <p>
+                    <a :href="getFileURL(file.value)" target="_blank">عرض</a>
+                  </p>
+                </div>
+              </div>
+            </template> -->
+            <template v-else>
+              <label
+                :for="`fileInput-${index}`"
+                class="w-[160px] h-[172px] flex flex-col items-center gap-2 border justify-center rounded-2xl cursor-pointer"
+              >
+                <input
+                  type="file"
+                  :id="`fileInput-${index}`"
+                  class="hidden"
+                  @change="(e) => handleFileChange(e, index)"
+                />
+                <img
+                  src="/img/icons/document-cloud.png"
+                  alt="asd"
+                  class="w-[64px] h-[64px]"
+                />
+                <p class="text-base sm:text-sm md:text-sm lg:text-lg p-2">
+                  {{ file.label }}
+                </p>
+              </label>
+            </template>
           </div>
-          <label
-            for="fileInput"
-            class="w-[160px] h-[172px] flex flex-col items-center gap-2 border justify-center rounded-2xl cursor-pointer"
-          >
-            <input
-              type="file"
-              id="fileInput"
-              class="hidden"
-              @change="handleFileChange"
-            />
-            <img
-              src="/img/icons/document-cloud.png"
-              alt="asd"
-              class="w-[64px] h-[64px]"
-            />
-            <p>الملفات</p>
-          </label>
-          <label
-            for="fileInput"
-            class="w-[160px] h-[172px] flex flex-col items-center gap-2 border justify-center rounded-2xl cursor-pointer"
-          >
-            <input
-              type="file"
-              id="fileInput"
-              class="hidden"
-              @change="handleFileChange"
-            />
-            <img
-              src="/img/icons/document-cloud.png"
-              alt="asd"
-              class="w-[64px] h-[64px]"
-            />
-            <p>الملفات</p>
-          </label>
-          <label
-            for="fileInput"
-            class="w-[160px] h-[172px] flex flex-col items-center gap-2 border justify-center rounded-2xl cursor-pointer"
-          >
-            <input
-              type="file"
-              id="fileInput"
-              class="hidden"
-              @change="handleFileChange"
-            />
-            <img
-              src="/img/icons/document-cloud.png"
-              alt="asd"
-              class="w-[64px] h-[64px]"
-            />
-            <p>الملفات</p>
-          </label>
-
-          <label
-            for="fileInput"
-            class="w-[160px] h-[172px] flex flex-col items-center gap-2 border justify-center rounded-2xl cursor-pointer"
-          >
-            <input
-              type="file"
-              id="fileInput"
-              class="hidden"
-              @change="handleFileChange"
-            />
-            <img
-              src="/img/icons/document-cloud.png"
-              alt="asd"
-              class="w-[64px] h-[64px]"
-            />
-            <p>الملفات</p>
-          </label>
         </div>
       </div>
     </div>
@@ -277,6 +276,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   data() {
     return {
@@ -285,6 +286,35 @@ export default {
         email: "",
         phone: "",
       },
+      imgf: {},
+      imagePath: "attachments/NgvV7st4TGnvniTPzHvTlogaRs1JVbuImRFJZjiJ.png",
+      files: [
+        {
+          key: "national_address",
+          label: "العنوان الوطني",
+          value: null,
+        },
+        {
+          key: "national_id",
+          label: "الهوية الوطنية",
+          value: null,
+        },
+        {
+          key: "legal_agency",
+          label: "الوكالة القانونية",
+          value: null,
+        },
+        {
+          key: "iban_certificate",
+          label: "شهادة الآيبان",
+          value: null,
+        },
+        {
+          key: "tax_certificate",
+          label: "شهادة الضريبة",
+          value: null,
+        },
+      ],
     };
   },
   methods: {
@@ -293,6 +323,67 @@ export default {
     },
     navigateTo(route) {
       this.$router.push({ name: route });
+    },
+    handleFileChange(e, index) {
+      this.files[index].value = e.target.files[0];
+    },
+    removeFile(index) {
+      this.files[index].value = null;
+    },
+    getFileURL(file) {
+      return URL.createObjectURL(file);
+    },
+    getFullImageUrl() {
+      // Construct the full URL from the relative path
+    },
+    getdata() {
+      axios
+        .get(
+          "/client-attachments",
+          // {},
+          {
+            headers: {
+              Authorization: `Bearer 2|6vJuyi5GpllUxthbIo7xbfhm0OqjvjATXiTFopLr50decf8f`,
+            },
+          }
+        )
+        .then((response) => {
+          // console.log((this.imgf = response.data[0]);
+          // console.log(response.data[0]);
+          // this.files.at(0).value = response.data[0].national_address;
+          // this.files[0].value = response.data[0].national_address;
+          // console.log(this.imgf);
+          this.imgf = response.data[0];
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    saveData() {
+      const formData = new FormData();
+      formData.append("client_id", localStorage.getItem("client_id")); // Example client_id, replace with your actual data
+      formData.append("description", "asdasdasd");
+      // Append files if they exist
+      this.files.forEach((file) => {
+        if (file.value) {
+          formData.append(file.key, file.value);
+        }
+      });
+      axios
+        .post("/client-attachments", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer 18|XhEHSSTK6TICXWGwrHFzb1WpF2retMtebhQKpPfPdda8f6f3`,
+          },
+        })
+        .then((response) => {
+          this.showAlert("تم حفظ البيانات بنجاح", "success");
+
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
   },
 };

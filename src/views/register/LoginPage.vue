@@ -191,7 +191,7 @@
             </div>
 
             <button
-              @click.prevent="login"
+              @click="handalSubmit"
               class="w-full p-2 bg-black text-white"
               style="font-family: 'Montserrat'"
             >
@@ -253,6 +253,8 @@ export default {
           email: this.email,
           password: this.password,
         });
+        this.setRole("dev");
+        this.$router.push({ name: "Customerlist" });
         console.log(response.data);
         localStorage.setItem("token", response.data.token);
       } catch (e) {

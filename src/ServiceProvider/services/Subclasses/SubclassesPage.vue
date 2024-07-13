@@ -1,10 +1,45 @@
 <template>
   <div class="w-[100%] flex flex-col items-center justify-center">
-    <div class="w-full flex flex-col items-center">
-      <div class="w-[100%]">
-        <div class="relative overflow-x-auto shadow-md sm:rounded-xl mt-24">
+    <bread-crumb :data="breadcrumb" />
+    <div class="w-[96%] flex flex-col items-center">
+      <div
+        class="flex lg:justify-between justify-center flex-wrap items-center w-[100%]"
+      >
+        <div class="w-[100%] flex flex-wrap gap-2">
           <div
-            class="flex justify-end h-[32px] py-10 bg-white items-center border-b"
+            v-for="card in [1, 2]"
+            :key="card.id"
+            class="w-[100%] md:w-[48%] h-[150px] bg-[#FFFFFF] flex flex-col justify-evenly px-[18px] py-2 rounded-[16px]"
+          >
+            <div class="flex flex-row justify-between">
+              <div
+                class="w-[72px] h-[28px] rounded-[8px] bg-[#3C757D24] flex items-center justify-center"
+                style="
+                  font-family: Montserrat-Arabic;
+                  font-size: 14px;
+                  font-weight: 400;
+                  line-height: 14px;
+                  letter-spacing: 0em;
+                  text-align: right;
+                "
+              >
+                +16,5 %
+              </div>
+              <div class="card-name flex items-center justify-center">
+                متاحة للبيع
+              </div>
+            </div>
+            <div class="card-num">10</div>
+            <div class="card-foot">مقارنة بالشهر السابق (750)</div>
+          </div>
+        </div>
+      </div>
+      <div class="w-[100%]">
+        <div
+          class="relative overflow-x-auto shadow-md sm:rounded-lg mt-24 border border-green-400 dark:border-gray-700"
+        >
+          <div
+            class="flex justify-end h-[32px] py-10 bg-white items-center border-b shadow-sm"
           >
             <div
               class="pr-5"
@@ -16,7 +51,7 @@
                 text-align: right;
               "
             >
-              <h1>{{ tabledata.name }}</h1>
+              <h1>قائمة التصنيفات الفرعية</h1>
             </div>
             <div
               class="h-[37px]"
@@ -41,20 +76,17 @@
             >
               <tr>
                 <th scope="col" class="p-4"></th>
-                <th
-                  scope="col"
-                  class="px-6 py-3"
-                  v-for="head in tabledata.headers"
-                  :key="head.id"
-                >
-                  {{ head }}
-                </th>
-                <th scope="col" class="p-4"></th>
+                <th scope="col" class="px-6 py-3">اسم العميل</th>
+                <th scope="col" class="px-6 py-3">رقم هاتف العميل</th>
+                <th scope="col" class="px-6 py-3">اسم المشروع</th>
+                <th scope="col" class="px-6 py-3">اسم الوحدة</th>
+                <th scope="col" class="px-6 py-3">طريقة الوصول</th>
+                <th scope="col" class="px-6 py-3">الاجراءات</th>
               </tr>
             </thead>
             <tbody>
               <tr
-                v-for="data in tabledata.data"
+                v-for="data in tabledata"
                 :key="data.id"
                 class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
               >
@@ -70,20 +102,18 @@
                     >
                   </div>
                 </td>
-
-                <td
-                  v-for="(value, key) in data"
-                  v-show="key !== 'id'"
-                  :key="key"
-                  class="px-6 py-4"
+                <th
+                  scope="row"
+                  class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                 >
-                  {{ value }}
-                </td>
+                  {{ data.cust_name }}
+                </th>
+                <td class="px-6 py-4">{{ data.phone }}</td>
+                <td class="px-6 py-4">{{ data.pr_name }}</td>
+                <td class="px-6 py-4">{{ data.unit_name }}</td>
+                <td class="px-6 py-4">{{ data.way_connect }}</td>
 
-                <td
-                  class="flex items-center px-6 py-4"
-                  @click="navigateTo('PaymentDetails')"
-                >
+                <td class="flex items-center px-6 py-4">
                   <svg
                     width="24"
                     height="24"
@@ -123,11 +153,33 @@
   </div>
 </template>
 <script>
+const tabledata = require("/public/data/tabledata.json");
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+ChartJS.register(ArcElement, Tooltip, Legend);
+import BreadCrumb from "@/components/BreadCrumb.vue";
 export default {
   data() {
-    return {};
+    return {
+      tabledata: tabledata,
+      breadcrumb: {
+        levels: [
+          { name: "المستوى الأول", route: "level1" },
+          { name: "المستوى الثاني", route: "level2" },
+          { name: "المستوى الثالث", route: "level3" },
+        ],
+        name: "قائمة التصنيفات الفرعية",
+        btn: {
+          isfuc: false,
+          isbtn: true,
+          name: "إضافة تصنيف",
+          route: "AddSubclasses",
+        },
+      },
+    };
   },
-  props: ["tabledata"],
+  components: {
+    BreadCrumb,
+  },
   methods: {
     navigateTo(name) {
       this.$router.push({ name: name });
@@ -138,6 +190,9 @@ export default {
 </script>
 
 <style scoped>
+/* Add this to your CSS */
+/* Add this to your CSS */
+
 @font-face {
   font-family: "Montserrat-Arabic";
 
@@ -146,5 +201,30 @@ export default {
 }
 * {
   font-family: Montserrat-Arabic;
+}
+.card-name {
+  font-family: Montserrat-Arabic;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: right;
+}
+.card-num {
+  font-family: Montserrat-Arabic;
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 40px;
+  letter-spacing: 0em;
+  text-align: right;
+  color: #3c757d;
+}
+.card-foot {
+  font-family: Montserrat-Arabic;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 14px;
+  letter-spacing: 0em;
+  text-align: right;
 }
 </style>
