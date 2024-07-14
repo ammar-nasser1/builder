@@ -280,8 +280,8 @@
                   style="font-family: 'Montserrat'"
                   type="text"
                   required
-                  v-model="domain"
-                  placeholder="Sub Domain"
+                  v-model="roles"
+                  placeholder=" roles"
                   class="py-3 pl-4 pr-11 text-right block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
                 />
 
@@ -313,9 +313,9 @@
             <button
               class="w-full p-2 bg-black text-white"
               style="font-family: 'Montserrat'"
-              @click="navigateTo('signup')"
+              @click="handleSubmit"
             >
-              تسجيل
+              تسجيل حساب جديد
             </button>
             <button
               @click="navigateTo('login')"
@@ -356,7 +356,7 @@ export default {
       confirmPassword: null,
       email: null,
       name: null,
-      domain: null,
+      roles: null,
     };
   },
   mounted() {
@@ -373,20 +373,29 @@ export default {
     navigateTo(route) {
       this.$router.push({ name: route });
     },
-    async handalSubmit(e) {
+    async handleSubmit(e) {
       e.preventDefault();
+      const formData = new FormData();
+      formData.append("name", this.name);
+      formData.append("email", this.email);
+      formData.append("password", this.password);
+      formData.append("c_password", this.password);
+      formData.append("roles", [
+        {
+          name: this.roles,
+        },
+      ]);
+
       try {
-        const response = await axios.post("/register", {
-          email: this.email,
-          password: this.password,
-          c_password: this.password,
-          name: this.name,
-          subdomain: this.domain,
+        const response = await axios.post("/register", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
         });
         console.log(response.data);
         localStorage.setItem("token", response.data.token);
       } catch (e) {
-        this.error = "Invalid email or password !";
+        this.error = "Invalid email or password!";
       }
     },
   },

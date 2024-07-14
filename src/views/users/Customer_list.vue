@@ -429,11 +429,15 @@ export default {
     },
     loadDataTable() {
       axios
-        .get("/clients", {
-          headers: {
-            Authorization: `Bearer 2|6vJuyi5GpllUxthbIo7xbfhm0OqjvjATXiTFopLr50decf8f`,
-          },
-        })
+        .get(
+          "/clients",
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        )
         .then((response) => {
           console.log(response);
         })

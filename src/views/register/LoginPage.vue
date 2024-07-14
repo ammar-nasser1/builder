@@ -253,10 +253,23 @@ export default {
           email: this.email,
           password: this.password,
         });
-        this.setRole("dev");
-        this.$router.push({ name: "Customerlist" });
-        console.log(response.data);
-        localStorage.setItem("token", response.data.token);
+        console.log(response.data.data.roles[0]);
+
+        switch (response.data.data.roles[0]) {
+          case "developer":
+            this.setRole("dev");
+            this.$router.push({ name: "Customerlist" });
+            break;
+          case "admin":
+            this.setRole("admin");
+            this.$router.push({ name: "Customerlist" });
+            break;
+          case "services":
+            this.setRole("user");
+            this.$router.push({ name: "Customerlist" });
+            break;
+        }
+        localStorage.setItem("token", response.data.data.token);
       } catch (e) {
         this.error = "Invalid email or password !";
       }
